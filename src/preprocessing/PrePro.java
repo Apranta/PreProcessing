@@ -5,10 +5,12 @@
  */
 package preprocessing;
 
+import NLP_ITB.POSTagger.HMM.Decoder.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import jsastrawi.morphology.*;
@@ -156,5 +158,10 @@ public class PrePro {
         }
         Lemmatizer lemmatizer = new DefaultLemmatizer(dictionary);
         return lemmatizer.lemmatize(Kata);
+    }
+    
+    public ArrayList<String> POSTagging(String Kata){
+        MainTagger mt = new MainTagger("./postagger/Lexicon.trn", "./postagger/Ngram.trn", 1);
+        return mt.taggingStr(Kata);
     }
 }
