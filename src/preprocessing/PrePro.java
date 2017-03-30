@@ -164,4 +164,20 @@ public class PrePro {
         MainTagger mt = new MainTagger("./postagger/Lexicon.trn", "./postagger/Ngram.trn", 1);
         return mt.taggingStr(Kata);
     }
+    
+    public String[] run(String Kalimat) throws IOException{
+       String[] hasil = null;
+       String[] temp_stem;
+       String temp;
+       int i=0;
+       temp = this.CaseFolding(Kalimat);
+       temp = this.StopWordRemoval(temp);
+       hasil = this.Tokenizing(temp);
+       temp_stem = new String[hasil.length];
+       for (String hasil1 : hasil) {
+           temp_stem[i] = this.Stemming(hasil1);
+           i++;
+       }
+       return temp_stem;
+    }
 }
